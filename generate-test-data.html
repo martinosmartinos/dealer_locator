@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Generate Test Dealers Excel</title>
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+  <h1>Generating Excel...</h1>
+  <script>
+    const dealers = [
+      { Bedrijfsnaam: "Scooter Center Amsterdam", Straatnaam: "Damrak", Huisnummer: "42", Postcode: "1012 LH", Plaatsnaam: "Amsterdam", Land: "Netherlands", "E-mail": "info@scootercenter.nl", Telefoonnummer: "020 624 1234", Website: "https://www.scootercenter.nl" },
+      { Bedrijfsnaam: "Helm Shop Rotterdam", Straatnaam: "Coolsingel", Huisnummer: "105", Postcode: "3012 AG", Plaatsnaam: "Rotterdam", Land: "Netherlands", "E-mail": "contact@helmshop.nl", Telefoonnummer: "010 411 5678", Website: "https://www.helmshop.nl" },
+      { Bedrijfsnaam: "Motor Parts Utrecht", Straatnaam: "Oudegracht", Huisnummer: "88", Postcode: "3511 AR", Plaatsnaam: "Utrecht", Land: "Netherlands", "E-mail": "sales@motorparts.nl", Telefoonnummer: "030 231 9012", Website: "https://www.motorparts.nl" },
+      { Bedrijfsnaam: "Bike World Den Haag", Straatnaam: "Grote Marktstraat", Huisnummer: "15", Postcode: "2511 BG", Plaatsnaam: "Den Haag", Land: "Netherlands", "E-mail": "info@bikeworld.nl", Telefoonnummer: "070 346 2345", Website: "https://www.bikeworld.nl" },
+      { Bedrijfsnaam: "Scooter Palace Eindhoven", Straatnaam: "Stratumseind", Huisnummer: "67", Postcode: "5611 ER", Plaatsnaam: "Eindhoven", Land: "Netherlands", "E-mail": "service@scooterpalace.nl", Telefoonnummer: "040 244 6789", Website: "https://www.scooterpalace.nl" },
+      { Bedrijfsnaam: "Helmet Express Groningen", Straatnaam: "Herestraat", Huisnummer: "33", Postcode: "9711 LB", Plaatsnaam: "Groningen", Land: "Netherlands", "E-mail": "info@helmetexpress.nl", Telefoonnummer: "050 312 0123", Website: "https://www.helmetexpress.nl" },
+      { Bedrijfsnaam: "Tweewieler Centrum Tilburg", Straatnaam: "Heuvelstraat", Huisnummer: "120", Postcode: "5038 AA", Plaatsnaam: "Tilburg", Land: "Netherlands", "E-mail": "verkoop@tweewieler.nl", Telefoonnummer: "013 535 4567", Website: "https://www.tweewieler.nl" },
+      { Bedrijfsnaam: "Motor Gear Almere", Straatnaam: "Stationsstraat", Huisnummer: "22", Postcode: "1315 KM", Plaatsnaam: "Almere", Land: "Netherlands", "E-mail": "shop@motorgear.nl", Telefoonnummer: "036 533 8901", Website: "https://www.motorgear.nl" },
+      { Bedrijfsnaam: "Scooter Discount Breda", Straatnaam: "Ginnekenweg", Huisnummer: "55", Postcode: "4818 JC", Plaatsnaam: "Breda", Land: "Netherlands", "E-mail": "info@scooterdiscount.nl", Telefoonnummer: "076 520 2345", Website: "https://www.scooterdiscount.nl" },
+      { Bedrijfsnaam: "Helm & Motor Nijmegen", Straatnaam: "Burchtstraat", Huisnummer: "78", Postcode: "6511 RC", Plaatsnaam: "Nijmegen", Land: "Netherlands", "E-mail": "contact@helmmotor.nl", Telefoonnummer: "024 322 6789", Website: "https://www.helmmotor.nl" },
+      { Bedrijfsnaam: "Rider Store Arnhem", Straatnaam: "Koningstraat", Huisnummer: "44", Postcode: "6811 DG", Plaatsnaam: "Arnhem", Land: "Netherlands", "E-mail": "info@riderstore.nl", Telefoonnummer: "026 442 0123", Website: "https://www.riderstore.nl" },
+      { Bedrijfsnaam: "Two Wheels Haarlem", Straatnaam: "Grote Houtstraat", Huisnummer: "91", Postcode: "2011 SL", Plaatsnaam: "Haarlem", Land: "Netherlands", "E-mail": "sales@twowheels.nl", Telefoonnummer: "023 531 4567", Website: "https://www.twowheels.nl" },
+      { Bedrijfsnaam: "Speed Motors Zaandam", Straatnaam: "Gedempte Gracht", Huisnummer: "17", Postcode: "1506 CJ", Plaatsnaam: "Zaandam", Land: "Netherlands", "E-mail": "info@speedmotors.nl", Telefoonnummer: "075 614 8901", Website: "https://www.speedmotors.nl" },
+      { Bedrijfsnaam: "Helmet Haven Amersfoort", Straatnaam: "Langestraat", Huisnummer: "63", Postcode: "3811 NB", Plaatsnaam: "Amersfoort", Land: "Netherlands", "E-mail": "shop@helmethaven.nl", Telefoonnummer: "033 461 2345", Website: "https://www.helmethaven.nl" },
+      { Bedrijfsnaam: "Scooter Direct Apeldoorn", Straatnaam: "Hoofdstraat", Huisnummer: "200", Postcode: "7311 BH", Plaatsnaam: "Apeldoorn", Land: "Netherlands", "E-mail": "verkoop@scooterdirect.nl", Telefoonnummer: "055 521 6789", Website: "https://www.scooterdirect.nl" },
+      { Bedrijfsnaam: "Motor House Enschede", Straatnaam: "Marktstraat", Huisnummer: "8", Postcode: "7511 GA", Plaatsnaam: "Enschede", Land: "Netherlands", "E-mail": "info@motorhouse.nl", Telefoonnummer: "053 430 0123", Website: "https://www.motorhouse.nl" },
+      { Bedrijfsnaam: "Ride Safe Zwolle", Straatnaam: "Diezerstraat", Huisnummer: "51", Postcode: "8011 RD", Plaatsnaam: "Zwolle", Land: "Netherlands", "E-mail": "contact@ridesafe.nl", Telefoonnummer: "038 421 4567", Website: "https://www.ridesafe.nl" },
+      { Bedrijfsnaam: "Helm Wereld Maastricht", Straatnaam: "Vrijthof", Huisnummer: "29", Postcode: "6211 LE", Plaatsnaam: "Maastricht", Land: "Netherlands", "E-mail": "info@helmwereld.nl", Telefoonnummer: "043 321 8901", Website: "https://www.helmwereld.nl" },
+      { Bedrijfsnaam: "Urban Scooters Leiden", Straatnaam: "Breestraat", Huisnummer: "135", Postcode: "2311 CN", Plaatsnaam: "Leiden", Land: "Netherlands", "E-mail": "shop@urbanscooters.nl", Telefoonnummer: "071 512 2345", Website: "https://www.urbanscooters.nl" },
+      { Bedrijfsnaam: "Beon Dealer Dordrecht", Straatnaam: "Voorstraat", Huisnummer: "270", Postcode: "3311 ET", Plaatsnaam: "Dordrecht", Land: "Netherlands", "E-mail": "info@beondordrecht.nl", Telefoonnummer: "078 613 6789", Website: "https://www.beondordrecht.nl" }
+    ];
+
+    const ws = XLSX.utils.json_to_sheet(dealers);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Dealers");
+    XLSX.writeFile(wb, "test_dealers_20.xlsx");
+    
+    document.body.innerHTML = '<h1>✅ Excel file downloaded!</h1><p>Check your downloads folder for: test_dealers_20.xlsx</p>';
+  </script>
+</body>
+</html>
