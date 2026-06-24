@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import { signOut } from 'next-auth/react';
 import DealerTable from '@/components/DealerTable';
 import DealerForm from '@/components/DealerForm';
 import ExcelImport from '@/components/ExcelImport';
@@ -195,9 +196,17 @@ export default function Home() {
     <div className="min-h-screen">
       {/* Header */}
       <header className="bg-white shadow">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <h1 className="text-2xl font-bold text-gray-900">Beon Dealer Manager</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage dealer locations</p>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex justify-between items-center">
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900">Beon Dealer Manager</h1>
+            <p className="text-gray-500 text-sm mt-1">Manage dealer locations</p>
+          </div>
+          <button
+            onClick={() => signOut({ callbackUrl: '/login' })}
+            className="px-4 py-2 text-sm font-medium text-red-600 hover:text-red-800 border border-red-200 rounded-lg hover:bg-red-50 transition-colors"
+          >
+            Logout
+          </button>
         </div>
       </header>
 
