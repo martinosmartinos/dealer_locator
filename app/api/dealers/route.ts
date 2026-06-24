@@ -1,5 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/lib/auth';
 import prisma from '@/lib/prisma';
+
+async function requireAuth() {
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    return NextResponse.json(
+      { success: false, error: 'Unauthorized' },
+      { status: 401 }
+    );
+  }
+  return null;
+}
 
 // GET - List all dealers with pagination and search
 export async function GET(request: NextRequest) {
@@ -68,6 +81,9 @@ export async function GET(request: NextRequest) {
 
 // POST - Create new dealer
 export async function POST(request: NextRequest) {
+  const authError = await requireAuth();
+  if (authError) return authError;
+
   try {
     const body = await request.json();
 
@@ -125,6 +141,9 @@ export async function POST(request: NextRequest) {
 
 // PUT - Update existing dealer
 export async function PUT(request: NextRequest) {
+  const authError = await requireAuth();
+  if (authError) return authError;
+
   try {
     const body = await request.json();
 
@@ -162,6 +181,9 @@ export async function PUT(request: NextRequest) {
 
 // DELETE - Remove dealer
 export async function DELETE(request: NextRequest) {
+  const authError = await requireAuth();
+  if (authError) return authError;
+
   try {
     const body = await request.json();
 
